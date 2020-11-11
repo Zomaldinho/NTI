@@ -10,30 +10,28 @@ let addTask = () => {
     </div>`;
   document.body.appendChild(newTask);
   task.value = '';
-  document.querySelector('form').style.display = 'none'
+  document.querySelector('form').style.display = 'none';
 };
 
 document.querySelector('#showForm').addEventListener('click', (e) => {
   e.preventDefault();
-  document.querySelector('form').style.display = 'block'
+  document.querySelector('form').style.display = 'block';
 });
 document.querySelector('#submitTask').addEventListener('click', (e) => {
   e.preventDefault();
   addTask();
 });
 
-document.body.addEventListener('click', (e)=>{
-  if(e.target.className == 'btn btn-primary done'){
-    e.target.parentElement.className = 'card-body text-success'
-  } else if(e.target.className == 'btn btn-primary remove'){
+document.body.addEventListener('click', (e) => {
+  let className = e.target.className;
+  if (className == 'btn btn-primary done') {
+    e.target.parentElement.className = 'card-body text-success';
+    e.target.style.display = 'none';
+  } else if (className == 'btn btn-primary remove') {
     e.target.parentElement.parentElement.remove();
-  } else if(e.target.className == 'btn btn-primary edit'){
+  } else if (className == 'btn btn-primary edit') {
     let p = e.toElement.previousElementSibling;
     console.log(e.toElement.previousElementSibling);
-    p.contentEditable = "true";
+    p.contentEditable = 'true';
   }
-})
-
-
-
-
+});
